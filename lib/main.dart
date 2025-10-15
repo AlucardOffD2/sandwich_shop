@@ -12,11 +12,49 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Sandwich Shop App',
       home: Scaffold(
-        appBar: AppBar(title: const Text('Sandwich Counter')),
-        body: const Center(
-          child: Text('Welcome to the Sandwich Shop!'),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255), // soft background
+        appBar: AppBar(
+          title: const Text('Sandwich Counter'),
+          backgroundColor: Colors.deepPurple[200],
+        ),
+        body: const Column(
+          mainAxisAlignment: MainAxisAlignment.start, // align at top
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 30), // space below AppBar
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SandwichBox(quantity: 3, type: 'BLT'),
+                SandwichBox(quantity: 5, type: 'Club'),
+                SandwichBox(quantity: 2, type: 'Veggie'),
+              ],
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class SandwichBox extends StatelessWidget {
+  final int quantity;
+  final String type;
+
+  const SandwichBox({super.key, required this.quantity, required this.type});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 180,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.blue[400],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      alignment: Alignment.center,
+      child: OrderItemDisplay(quantity, type),
     );
   }
 }
@@ -29,7 +67,11 @@ class OrderItemDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return Text('$quantity $itemType sandwich(es): ${'🥪' * quantity}');
+    return Text(
+      '$quantity $itemType sandwich(es): ${'🥪' * quantity}',
+      style: const TextStyle(color: Colors.white, fontSize: 16),
+      textAlign: TextAlign.center,
+    );
   }
 }
 

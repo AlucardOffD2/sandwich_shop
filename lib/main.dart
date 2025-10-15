@@ -47,7 +47,7 @@ class SandwichBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
+      width: 300,
       height: 100,
       decoration: BoxDecoration(
         color: Colors.blue[400],
